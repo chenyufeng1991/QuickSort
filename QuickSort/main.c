@@ -44,7 +44,6 @@ int *quickSort( int arr[],int left,int right){
                 arr[j--] = arr[i];
             }
         }
-
         arr[i] = x;
         quickSort(arr, left, i - 1);
         quickSort(arr, i + 1, right);
@@ -55,7 +54,6 @@ int *quickSort( int arr[],int left,int right){
 //            printf("%d ",arr[i]);
 //        }
 //    }
-
 
     return arr;
 }
