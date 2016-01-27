@@ -8,18 +8,22 @@
 
 #include <stdio.h>
 
-void quickSort(int arr[],int left,int right);
+int *quickSort(int arr[],int left,int right);
 int main(int argc, const char * argv[]) {
 
 
     int numArr[5] = {9,1,0,4,1};
+    int *p;
 
-    quickSort(numArr,0,4);
+    p = quickSort(numArr,0,4);
 
+    for (int i = 0; i < 5; i++ ){
+        printf( "%d ", *(p + i));
+               }
     return 0;
 }
 
-void quickSort(int arr[],int left,int right){
+int *quickSort( int arr[],int left,int right){
 
     if (left < right) {
 
@@ -46,11 +50,14 @@ void quickSort(int arr[],int left,int right){
         quickSort(arr, i + 1, right);
     }
 
-    if (left == right) {
-        for (int i = 0; i < 5; i++) {
-            printf("%d ",arr[i]);
-        }
-    }
+//    if (left == right) {
+//        for (int i = 0; i < 5; i++) {
+//            printf("%d ",arr[i]);
+//        }
+//    }
+
+
+    return arr;
 }
 
 
