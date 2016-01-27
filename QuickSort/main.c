@@ -12,7 +12,7 @@ void quickSort(int arr[],int left,int right);
 int main(int argc, const char * argv[]) {
 
 
-    int numArr[5] = {8,2,9,4,5};
+    int numArr[5] = {9,1,0,4,1};
 
     quickSort(numArr,0,4);
 
@@ -46,10 +46,11 @@ void quickSort(int arr[],int left,int right){
         quickSort(arr, i + 1, right);
     }
 
-    for (int i = 0; i < 5; i++) {
-        printf("%d ",arr[i]);
+    if (left == right) {
+        for (int i = 0; i < 5; i++) {
+            printf("%d ",arr[i]);
+        }
     }
-
 }
 
 
