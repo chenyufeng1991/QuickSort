@@ -6,48 +6,70 @@
 //  Copyright © 2016年 chenyufengweb. All rights reserved.
 //
 
+// 利用Partition划分实现快速排序
 #include <stdio.h>
+#include <stdlib.h>
 
-void quickSort02(int *arr,int l,int r);
+void QuickSort(int *arr, int start, int end);
+int Partition(int *arr, int start, int end);
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char *argv[])
+{
+    int array[] = {6,4,3,7,8,9};
+    QuickSort(array, 0, 5);
 
-    int numArr[5] = {3,6,0,9,4};
-    quickSort02(numArr, 0, 4);
-    for (int i = 0; i < 5; i++) {
-        printf("%d ",numArr[i]);
+    for (int i = 0; i < 6; i++)
+    {
+        printf("%d ",array[i]);
+    }
+
+    return 0;
+}
+
+void QuickSort(int *arr, int start, int end)
+{
+    if (start == end)
+    {
+        return;
+    }
+
+    int index = Partition(arr, start, end);
+    if (index > start)
+    {
+        QuickSort(arr, start, index);
+    }
+
+    if (index < end)
+    {
+        QuickSort(arr, index + 1, end);
     }
 }
 
-void quickSort02(int *arr,int l,int r){
-    //当左右指针相等的时候直接返回；
-    if (l < r) {
-        //此时的x就是基准值；
-        int i = l,j = r,x = arr[l];
+int Partition(int *arr, int start, int end)
+{
+    int i = start, j = end, x = arr[start];
 
-        //下面的while循环表示一次分治，也就是进行一次排序；
-        while (i < j) {
-            //先从基准值右侧找出小于基准的值；
-            while (i < j && arr[j] >= x) {
-                j--;
-            }
-            if (i < j) {
-                //交换顺序，i++；
-                arr[i++] = arr[j];
-            }
-            //从基准值左侧找出大于基准的值；
-            while (i < j && arr[i] < x) {
-                i++;
-            }
-            if (i < j) {
-                //交换顺序，j--;
-                arr[j--] = arr[i];
-            }
+    while (i < j)
+    {
+        while (i < j && arr[j] >= x)
+        {
+            j--;
         }
-        //把基准值放入arr[i]位置；
-        arr[i] = x;
-        //递归，左右两侧分别进行快排；
-        quickSort02(arr, l, i - 1);
-        quickSort02(arr, i + 1, r);
+        if (i < j)
+        {
+            arr[i++] = arr[j];
+        }
+
+        while (i < j && arr[i] < x)
+        {
+            i++;
+        }
+        if (i < j)
+        {
+            arr[j--] = arr[i];
+        }
     }
+    arr[i] = x;
+
+    return i;
 }
